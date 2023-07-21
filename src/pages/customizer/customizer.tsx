@@ -12,10 +12,11 @@ import Templates from '../../components/Templates'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux/store'
 import { toggleShowTemplates, toggleEditBackground } from '../../redux/reducers/controls'
-import { changeBackgroundImage } from '../../redux/reducers/customizer'
+import customizer, { changeBackgroundImage } from '../../redux/reducers/customizer'
 import FrameOptions from '../../components/FrameOptions'
 import { updateOrientation } from '../../redux/reducers/canvas'
 import '~/pages/customizer/customizer.scss'
+import FontCustomizationModal from './FontCustomizationModal'
 
 export const Customizer: React.FC = () => {
   const [audioFile, setAudioFile] = useState<File | null>(null)
@@ -26,7 +27,28 @@ export const Customizer: React.FC = () => {
   const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
   const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
   const [showConfirmation, setShowConfirmation] = useState(false)
+  const [fontFamilyTitle, setFontFamilyTitle] = useState('')
+  const [fontSizeTitle, setFontSizeTitle] = useState()
+  const [fontFamilySubtitle, setFontFamilySubtitle] = useState('')
+  const [fontSizeSubtitle, setFontSizeSubtitle] = useState()
+  const [showModalTitle, setShowModalTitle] = useState(false)
+  const [showModalSubtitle, setShowModalSubtitle] = useState(false)
 
+  const handleFontFamilyChangeTitle = (newFontFamily) => {
+    setFontFamilyTitle(newFontFamily)
+  }
+
+  const handleFontSizeChangeTitle = (newFontSize) => {
+    setFontSizeTitle(newFontSize)
+  }
+
+  const handleFontFamilyChangeSubtitle = (newFontFamily) => {
+    setFontFamilySubtitle(newFontFamily)
+  }
+
+  const handleFontSizeChangeSubtitle = (newFontSize) => {
+    setFontSizeSubtitle(newFontSize)
+  }
   // Redux state controls
   const { controls } = useSelector((state: RootState) => state.controls)
   const { customizer } = useSelector((state: RootState) => state.customizer)
@@ -273,17 +295,54 @@ export const Customizer: React.FC = () => {
               <div className='canvas-header'>
                 <p className='text-capitalize'>{orientation} Image Background Template</p>
                 <button className='btn-circle' onClick={setCanvasOrientation}>
-                  <img className={`orientation-icon ${orientation + '-orientation'}`} src='src/assets/icons/svg/orientation-icon.svg' alt='' />
+                  <img className={`orientation-icon ${orientation + '-orientation'}`} src='src/assets/icons/svg/orientation-icon.svg' alt='#' />
                 </button>
               </div>
               <div className={'canvas-content'} style={{ background: `url('${customizer.backgroundImage}'` }}>
                 <div className={`overlay ${selected.color.view} ${selected.color.key}`}></div>
                 <div className="canvas-text title">
-                  {/* <h1>{canvasTitle}</h1> */}
+                  <h1
+                    style={{ fontFamily: fontFamilyTitle, fontSize: `${fontSizeTitle}px` }}
+                    contentEditable={true}
+                    onInput={(event) => setCanvasTitle()}
+                    onClick={() => setShowModalTitle(true)}
+                    id='title'
+                  >
+                    {canvasTitle}
+                  </h1>
                 </div>
                 <div className="canvas-text subtitle">
-                  <h1>{canvasSubtitle}</h1>
+                  <h1
+                    style={{ fontFamily: fontFamilySubtitle, fontSize: `${fontSizeSubtitle}px` }}
+                    contentEditable={true}
+                    onInput={(event) => setCanvasSubtitle()}
+                    onClick={() => setShowModalSubtitle(true)}
+                    id='subtitle'
+                  >
+                    {canvasSubtitle}
+                  </h1>
                 </div>
+                {/* Yung mga modal */}
+                {showModalTitle && (
+                      <FontCustomizationModal
+                        fontFamily={fontFamilyTitle}
+                        fontSize={fontSizeTitle}
+                        isTitle={true}
+                        onClose={() => setShowModalTitle(false)}
+                        onFontFamilyChange={handleFontFamilyChangeTitle}
+                        onFontSizeChange={handleFontSizeChangeTitle}
+                      />)}
+                {showModalSubtitle && (
+
+                  <FontCustomizationModal
+                    fontFamily={fontFamilySubtitle}
+                    fontSize={fontSizeSubtitle}
+                    isTitle={false}
+                    onClose={() => setShowModalSubtitle(false)}
+                    onFontFamilyChange={handleFontFamilyChangeSubtitle}
+                    onFontSizeChange={handleFontSizeChangeSubtitle}
+                  />
+                )}
                 <div className="canvas-soundwave">
                   {(audioBuffer !== null)
                     ? <WaveCanvas id='canvas-canvas' waveHeight={initialState.waveHeight} audioBuffer={audioBuffer} width={initialState.canvasWidth} height={initialState.canvasHeight} />
