@@ -31,7 +31,7 @@
 }
 .canvas-container {
     box-sizing: border-box;
-    width: 100%;
+    // width: 100%;
     height: 920px;
     background: #FFFFFF;
     border: 1px solid #EFEFEF;
@@ -314,7 +314,6 @@ button.accordion-button {
     line-height: 61px;
     text-transform: uppercase;
     color: #FFFFFF;
-    text-shadow: 0 0.3rem 0.5rem #000;
 }
 .canvas-text.title h1 {
     font-family: 'Cormorant';
@@ -322,8 +321,7 @@ button.accordion-button {
     font-weight: 500;
     font-size: 50px;
     line-height: 61px;
-    outline: none;
-    text-shadow: 0 0.3rem 0.5rem #000;
+
 }
 .canvas-text.subtitle {
     display: flex;
@@ -332,13 +330,7 @@ button.accordion-button {
     align-items: flex-start;
     padding: 8px 16px;
     gap: 10px;
-    text-shadow: 0 0.3rem 0.5rem #000;
 }
-.canvas-text.subtitle h1 {
-  outline: none;
-  text-shadow: 0 0.3rem 0.5rem #000;
-}
-
 .canvas-content .overlay {
   position: absolute;
   height: 100%;
@@ -479,7 +471,7 @@ button.accordion-button .upload-header .upload-desc {
     box-shadow: 0px 0px 6px 0px #a3a3a367;
   }
 }
-.input-btn {
+.input-btns {
   display: flex;
   flex-direction: row;
 
@@ -493,7 +485,7 @@ button.accordion-button .upload-header .upload-desc {
   }
 }
 
-// {Media Queries - Responsiveness}
+// {Media Queries - Reponsiveness}
 @media (max-width: 980px) {
   .customizer-container{
       display: flex;
@@ -548,44 +540,6 @@ button.accordion-button .upload-header .upload-desc {
       border: 1px solid #fff;
   }
   .canvas-text.title h1 {
-      font-size: 20px;
-      width: 190px;
-      line-height: 10px;
-  }
-
-  //  edited
-  .customizer-container .canvas-container {
-    margin-left: 0;
-  }
-  .canvas-text.subtitle {
-    margin: 5px;
-    text-align: center;
-  }
-  .canvas-text.subtitle h1 {
-    width: 160px;
-    font-size: 16px;
-  }
-  .canvas-text.title {
-    text-align: center;
-    margin: 5px;
-    // margin-top: 10px;
-    width: 270px;
-  }
-  .sizing-container {
-    justify-content: space-between;
-
-  }
-  label.col-6.frame-selection {
-    width: 120px !important;
-  }
-  button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled) {
-    justify-content: flex-start;
-  }
-  .temp-canvas-image img {
-    width: 220px;
-    height: 150px;
-  }
-  .canvas-text {
-    
+      font-size: 30px;
   }
 }
