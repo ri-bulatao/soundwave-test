@@ -45,7 +45,7 @@
     }
     .canvas-container {
       flex: 1 1 auto;
-      margin-left: 12px;
+      // margin-left: 12px;
     }
 }
 
@@ -305,6 +305,17 @@ button.accordion-button {
     border-radius: 8px;
     color: #FFFFFF;
     padding: 10px 40px;
+}
+.form-control {
+  background: transparent !important;
+  border: transparent !important;
+  font-size: 30px;
+}
+.form-control:focus {
+  border-color: #ced4da;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 .canvas-text.title {
     font-family: 'Cormorant';

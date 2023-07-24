@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, useRef } from 'react'
 import type { MouseEventHandler } from 'react'
 import { Accordion } from 'react-bootstrap'
 import DragAndDropImageInput from '../../components/DragAndDropImageInput/DragAndDropImageInput'
@@ -26,6 +26,13 @@ export const Customizer: React.FC = () => {
   const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
   const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
   const [showConfirmation, setShowConfirmation] = useState(false)
+
+  const [selectedFontTitle, setSelectedFontTitle] = useState<string>('Normal');
+  const textElementRefTitle = useRef<HTMLInputElement>(null);
+  const [selectedFontSubTitle, setSelectedFontSubTitle] = useState<string>('Normal');
+  const textElementRefSubTitle = useRef<HTMLInputElement>(null);
+  const [show,setShow]=useState(false)
+  const [showSubTitle,setShowSubTitle]=useState(false)
 
   // Redux state controls
   const { controls } = useSelector((state: RootState) => state.controls)
@@ -117,6 +124,69 @@ export const Customizer: React.FC = () => {
     },
     [audioFile, showConfirmation]
   )
+  const handleFontChangeTitle = () => {
+    if (textElementRefTitle.current) {
+      const textElement = textElementRefTitle.current;
+      if (selectedFontTitle === 'Italic') {
+        textElement.style.fontStyle = 'italic';
+        console.log(textElement.value)
+      } 
+      else if (selectedFontTitle === 'Normal') {
+        textElement.style.font = '30px arial,serif';
+        textElement.style.color = '';
+      } 
+      else if (selectedFontTitle === 'Bold') {
+        textElement.style.fontWeight = 'bold';
+      } 
+      else if(selectedFontTitle === '50px'){
+        textElement.style.fontSize = '50px';
+      }
+      else if(selectedFontTitle === 'red'){
+        textElement.style.color = 'red';
+      }
+      else if(selectedFontTitle === 'green'){
+        textElement.style.color = 'green';
+      }
+      else if(selectedFontTitle === 'Georgia'){
+        textElement.style.fontFamily = 'Georgia';
+      }
+      else if(selectedFontTitle === 'Tahoma'){
+        textElement.style.fontFamily = 'Tahoma';
+      }
+    }
+  }
+  const handleFontChangeSubTitle = () => {
+    
+    if (textElementRefSubTitle.current) {
+      const textElement = textElementRefSubTitle.current;
+      if (selectedFontSubTitle === 'Italic') {
+        textElement.style.fontStyle = 'italic';
+        console.log(textElement.value)
+      } 
+      else if (selectedFontSubTitle === 'Normal') {
+        textElement.style.font = '30px arial,serif';
+        textElement.style.color = '';
+      } 
+      else if (selectedFontSubTitle === 'Bold') {
+        textElement.style.fontWeight = 'bold';
+      } 
+      else if(selectedFontSubTitle === '50px'){
+        textElement.style.fontSize = '50px';
+      }
+      else if(selectedFontSubTitle === 'red'){
+        textElement.style.color = 'red';
+      }
+      else if(selectedFontSubTitle === 'green'){
+        textElement.style.color = 'green';
+      }
+      else if(selectedFontSubTitle === 'Georgia'){
+        textElement.style.fontFamily = 'Georgia';
+      }
+      else if(selectedFontSubTitle === 'Tahoma'){
+        textElement.style.fontFamily = 'Tahoma';
+      }
+    }
+  }
   return (
     <>
       <div className='template-container'>
@@ -229,7 +299,7 @@ export const Customizer: React.FC = () => {
                   <Accordion.Body>
                     <ul className="order-preview-container">
                       <li className="order-item">
-                        ORIENTATION<strong>{'Landscapre'}</strong>
+                        ORIENTATION<strong>{orientation}</strong>
                       </li>
                       <li className="order-item">
                         FRAME TYPE<strong>{selected.frame.title}</strong>
@@ -280,10 +350,41 @@ export const Customizer: React.FC = () => {
                 <div className={`overlay ${selected.color.view} ${selected.color.key}`}></div>
                 <div className="canvas-text title">
                   {/* <h1>{canvasTitle}</h1> */}
+                  <input onClick={()=>setShow(true)} id="TextInput" className="form-control border-none text-center" placeholder={canvasTitle} type="text" ref={textElementRefTitle}/>
                 </div>
+                {show?<div>
+                  <select id="font" className="form-select mb-2" value={selectedFontTitle} onChange={(e) => setSelectedFontTitle(e.target.value)}>
+                    <option value="Normal">Normal</option>
+                    <option value="Bold">Bold</option>
+                    <option value="Italic">Italic</option>
+                    <option value="50px">50px</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Tahoma">Tahoma</option>
+                  </select>
+                  <input type="button" className='btn btn-success' onClick={handleFontChangeTitle} value="Change Font Style" />
+                  <button className='btn' onClick={()=>setShow(false)}>Close</button>
+                </div>:null}
+                
                 <div className="canvas-text subtitle">
-                  <h1>{canvasSubtitle}</h1>
+                  {/* <h1>{canvasSubtitle}</h1> */}
+                  <input onClick={()=>setShowSubTitle(true)} id="TextInput" className="form-control border-none text-center" placeholder={canvasSubtitle} type="text" ref={textElementRefSubTitle}/>
                 </div>
+                {showSubTitle?<div>
+                  <select id="font" className="form-select mb-2" value={selectedFontSubTitle} onChange={(e) => setSelectedFontSubTitle(e.target.value)}>
+                    <option value="Normal">Normal</option>
+                    <option value="Bold">Bold</option>
+                    <option value="Italic">Italic</option>
+                    <option value="50px">50px</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Tahoma">Tahoma</option>
+                  </select>
+                  <input type="button" className='btn btn-success' onClick={handleFontChangeSubTitle} value="Change Font Style" />
+                  <button className='btn' onClick={()=>setShowSubTitle(false)}>Close</button>
+                </div>:null}
                 <div className="canvas-soundwave">
                   {(audioBuffer !== null)
                     ? <WaveCanvas id='canvas-canvas' waveHeight={initialState.waveHeight} audioBuffer={audioBuffer} width={initialState.canvasWidth} height={initialState.canvasHeight} />
