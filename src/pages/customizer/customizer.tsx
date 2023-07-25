@@ -119,7 +119,7 @@ export const Customizer: React.FC = () => {
   useEffect(
     () => {
       setCanvasTitle('Enter your title')
-      setCanvasSubtitle('Enter your subtitle here')
+      setCanvasSubtitle('Enter your subtitle')
       console.log(canvasTitle)
     },
     [audioFile, showConfirmation]
@@ -153,6 +153,12 @@ export const Customizer: React.FC = () => {
       else if(selectedFontTitle === 'Tahoma'){
         textElement.style.fontFamily = 'Tahoma';
       }
+      else if(selectedFontTitle === 'Century Gothic'){
+        textElement.style.fontFamily = 'Century Gothic';
+      }
+      else if(selectedFontTitle === 'Segoe UI'){
+        textElement.style.fontFamily = 'Segoe UI';
+      }
     }
   }
   const handleFontChangeSubTitle = () => {
@@ -185,11 +191,21 @@ export const Customizer: React.FC = () => {
       else if(selectedFontSubTitle === 'Tahoma'){
         textElement.style.fontFamily = 'Tahoma';
       }
+      else if(selectedFontTitle === 'Century Gothic'){
+        textElement.style.fontFamily = 'Century Gothic';
+      }
+      else if(selectedFontTitle === 'Segoe UI'){
+        textElement.style.fontFamily = 'Segoe UI';
+      }
     }
+
   }
+  
+
   return (
     <>
       <div className='template-container'>
+       
         <div className="template-action-container">
           <button onClick={() => dispatch(toggleShowTemplates(true))} className="add-template-button">Template gallery</button>
           <button onClick={() => dispatch(toggleShowTemplates(false))} className="close-template-button"><img src="/src/assets/icons/close.png" alt="" className="icon" /></button>
@@ -362,9 +378,11 @@ export const Customizer: React.FC = () => {
                     <option value="green">Green</option>
                     <option value="Georgia">Georgia</option>
                     <option value="Tahoma">Tahoma</option>
+                    <option value="Century Gothic">Century Gothic</option>
+                    <option value="Segoe UI">Segoe UI</option>
                   </select>
-                  <input type="button" className='btn btn-success' onClick={handleFontChangeTitle} value="Change Font Style" />
-                  <button className='btn' onClick={()=>setShow(false)}>Close</button>
+                  <input type='button' className='btn btn-success' onClick={handleFontChangeTitle} value="Change Font Style" />
+                  <button className='btn btn-light' onClick={()=>setShow(false)}>Close</button>
                 </div>:null}
                 
                 <div className="canvas-text subtitle">
@@ -381,9 +399,11 @@ export const Customizer: React.FC = () => {
                     <option value="green">Green</option>
                     <option value="Georgia">Georgia</option>
                     <option value="Tahoma">Tahoma</option>
+                    <option value="Century Gothic">Century Gothic</option>
+                    <option value="Segoe UI">Segoe UI</option>
                   </select>
                   <input type="button" className='btn btn-success' onClick={handleFontChangeSubTitle} value="Change Font Style" />
-                  <button className='btn' onClick={()=>setShowSubTitle(false)}>Close</button>
+                  <button className='btn btn-light' onClick={()=>setShowSubTitle(false)}>Close</button>
                 </div>:null}
                 <div className="canvas-soundwave">
                   {(audioBuffer !== null)

@@ -38,9 +38,9 @@ const FrameOptions: React.FC = () => {
                 checked={selected.frame.value === option.value}
                 onChange={() => { dispatch(setFrame(option)) }}
             />
-            <div className="row">
+            <div className="row" style={{marginLeft: "-px"}}>
               <div className="col-auto">
-                <img src={option.image} className="img-fluid rounded-start" alt="..."/>
+                <img src={option.image} className="img-fluid rounded-start" alt={option.image}/>
               </div>
             <div className="col-auto">
               {option.title}

@@ -301,10 +301,16 @@ button.accordion-button {
     display: none;
 }
 .canvas-text {
-  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='white' stroke-width='3' stroke-dasharray='10%2c 12' stroke-dashoffset='20' stroke-linecap='square'/%3e%3c/svg%3e");
+  // background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='white' stroke-width='3' stroke-dasharray='10%2c 12' stroke-dashoffset='20' stroke-linecap='square'/%3e%3c/svg%3e");
     border-radius: 8px;
-    color: #FFFFFF;
-    padding: 10px 40px;
+    border: rgb(255, 255, 255) solid 2px;
+    // color: #FFFFFF;
+    // padding: 10px 40px;
+}
+@media screen and (max-width: 1000px) {
+  .canvas-text.title {
+    margin-top: 25vh;
+  }
 }
 .form-control {
   background: transparent !important;
@@ -317,8 +323,17 @@ button.accordion-button {
   outline: none !important;
   box-shadow: none !important;
 }
+@media screen and (max-width: 500px) {
+  .form-control {
+    width: 70vw;
+    font-size: 20px !important;
+  }
+  .canvas-text.title{
+    margin-top: 10vh;
+  }
+}
 .canvas-text.title {
-    font-family: 'Cormorant';
+    font-family: 'SF Pro';
     font-style: normal;
     font-weight: 500;
     font-size: 50px;
@@ -335,12 +350,13 @@ button.accordion-button {
 
 }
 .canvas-text.subtitle {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 8px 16px;
-    gap: 10px;
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 50px;
+    line-height: 61px;
+    text-transform: uppercase;
+    color: #FFFFFF;
 }
 .canvas-content .overlay {
   position: absolute;
@@ -422,7 +438,7 @@ button.accordion-button .upload-header .upload-desc {
   display: block;
 }
 .col-7.canvas-container.portrait .canvas-component > div:not(.canvas-header) {
-  width: 550px;
+  width: 70%;
   transition: width 0.3s ease;
 }
 .col-7.canvas-container.landscape .canvas-component > div:not(.canvas-header) {
