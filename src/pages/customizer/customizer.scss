@@ -306,31 +306,43 @@ button.accordion-button {
     color: #FFFFFF;
     padding: 10px 40px;
 }
-.canvas-text.title {
+
+.canvas-text.title,
+.canvas-text.subtitle {
     font-family: 'Cormorant';
     font-style: normal;
     font-weight: 500;
-    font-size: 50px;
     line-height: 61px;
-    text-transform: uppercase;
     color: #FFFFFF;
 }
-.canvas-text.title h1 {
-    font-family: 'Cormorant';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 50px;
-    line-height: 61px;
 
+.canvas-text.title {
+    font-size: 50px;
+    text-transform: uppercase;
 }
+
+.canvas-text.title input[type="text"],
+.canvas-text.subtitle input[type="text"] {
+    color: white;
+    background: transparent;
+    text-align: center;
+    border: none;
+    outline: none;
+}
+
 .canvas-text.subtitle {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: flex-start;
     padding: 8px 16px;
     gap: 10px;
 }
+
+.canvas-text.subtitle input[type="text"] {
+    font-size: 2rem;
+    display: inline-block;
+}
+
 .canvas-content .overlay {
   position: absolute;
   height: 100%;

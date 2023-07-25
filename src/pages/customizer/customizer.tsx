@@ -109,6 +109,14 @@ export const Customizer: React.FC = () => {
     dispatch(updateOrientation(canvasOrientation))
   }
 
+  const handleCanvasTitleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setCanvasTitle(event.target.value)
+  }
+
+  const handleCanvasSubTitleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setCanvasSubtitle(event.target.value)
+  }
+
   useEffect(
     () => {
       setCanvasTitle('Enter your title')
@@ -279,10 +287,11 @@ export const Customizer: React.FC = () => {
               <div className={'canvas-content'} style={{ background: `url('${customizer.backgroundImage}'` }}>
                 <div className={`overlay ${selected.color.view} ${selected.color.key}`}></div>
                 <div className="canvas-text title">
-                  {/* <h1>{canvasTitle}</h1> */}
+                  <input type="text" value={canvasTitle} onChange={handleCanvasTitleChange} />
                 </div>
                 <div className="canvas-text subtitle">
-                  <h1>{canvasSubtitle}</h1>
+                  {/* <h1>Enter subtitle here</h1> */}
+                  <input type="text" value={canvasSubtitle} onChange={handleCanvasSubTitleChange} />
                 </div>
                 <div className="canvas-soundwave">
                   {(audioBuffer !== null)
