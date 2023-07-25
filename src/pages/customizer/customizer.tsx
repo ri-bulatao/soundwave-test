@@ -108,7 +108,7 @@ export const Customizer: React.FC = () => {
     const canvasOrientation = orientation === 'landscape' ? 'portrait' : 'landscape'
     dispatch(updateOrientation(canvasOrientation))
   }
-
+// 
   useEffect(
     () => {
       setCanvasTitle('Enter your title')
@@ -117,6 +117,12 @@ export const Customizer: React.FC = () => {
     },
     [audioFile, showConfirmation]
   )
+  const [fontStyle, setFontStyle] = useState<string>('');
+
+  const changeFont = (font: string) => {
+    setFontStyle(font);
+    console.log(fontStyle)
+  };
   return (
     <>
       <div className='template-container'>
@@ -229,7 +235,7 @@ export const Customizer: React.FC = () => {
                   <Accordion.Body>
                     <ul className="order-preview-container">
                       <li className="order-item">
-                        ORIENTATION<strong>{'Landscape'}</strong>
+                        ORIENTATION<strong>{orientation}</strong>
                       </li>
                       <li className="order-item">
                         FRAME TYPE<strong>{selected.frame.title}</strong>
@@ -276,6 +282,22 @@ export const Customizer: React.FC = () => {
                   <img className={`orientation-icon ${orientation + '-orientation'}`} src='src/assets/icons/svg/orientation-icon.svg' alt='' />
                 </button>
               </div>
+              <div>
+                    <p id='text' style={{font: `${fontStyle}`}}>
+                    </p>
+                    <button onClick={() => changeFont('italic 20px arial')}>
+                      Italic, Arial, 20px
+                    </button>
+                    <button onClick={() => changeFont('bold 26px serif')}>
+                      Bold, Serif, 26px
+                    </button>
+                    <button onClick={() => changeFont('italic bold 30px Montserrat')}>
+                      Italic, Montserrat, 30px
+                    </button>
+                    <button onClick={() => changeFont('900 34px hack')}>
+                      Weight 900, Hack, 34px
+                    </button>
+                  </div>
               <div className={'canvas-content'} style={{ background: `url('${customizer.backgroundImage}'` }}>
                 <div className={`overlay ${selected.color.view} ${selected.color.key}`}></div>
                 <div className="canvas-text title">
