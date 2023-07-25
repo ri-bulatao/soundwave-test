@@ -229,7 +229,7 @@ export const Customizer: React.FC = () => {
                   <Accordion.Body>
                     <ul className="order-preview-container">
                       <li className="order-item">
-                        ORIENTATION<strong>{'Landscapre'}</strong>
+                        ORIENTATION<strong>{'Landscape'}</strong>
                       </li>
                       <li className="order-item">
                         FRAME TYPE<strong>{selected.frame.title}</strong>
@@ -279,7 +279,7 @@ export const Customizer: React.FC = () => {
               <div className={'canvas-content'} style={{ background: `url('${customizer.backgroundImage}'` }}>
                 <div className={`overlay ${selected.color.view} ${selected.color.key}`}></div>
                 <div className="canvas-text title">
-                  {/* <h1>{canvasTitle}</h1> */}
+                  <h1>{canvasTitle}</h1>
                 </div>
                 <div className="canvas-text subtitle">
                   <h1>{canvasSubtitle}</h1>
