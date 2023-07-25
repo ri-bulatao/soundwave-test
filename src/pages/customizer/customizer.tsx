@@ -108,7 +108,6 @@ export const Customizer: React.FC = () => {
     const canvasOrientation = orientation === 'landscape' ? 'portrait' : 'landscape'
     dispatch(updateOrientation(canvasOrientation))
   }
-// 
   useEffect(
     () => {
       setCanvasTitle('Enter your title')
@@ -117,12 +116,12 @@ export const Customizer: React.FC = () => {
     },
     [audioFile, showConfirmation]
   )
-  const [fontStyle, setFontStyle] = useState<string>('');
+  const [fontStyle, setFontStyle] = useState<string>('')
 
-  const changeFont = (font: string) => {
-    setFontStyle(font);
+  const changeFont = (font: string): void => {
+    setFontStyle(font)
     console.log(fontStyle)
-  };
+  }
   return (
     <>
       <div className='template-container'>
@@ -283,18 +282,18 @@ export const Customizer: React.FC = () => {
                 </button>
               </div>
               <div>
-                    <p id='text' style={{font: `${fontStyle}`}}>
+                    <p id='text' style={ { font: `${fontStyle}` } }>
                     </p>
-                    <button onClick={() => changeFont('italic 20px arial')}>
+                    <button onClick={() => { changeFont('italic 20px arial') } }>
                       Italic, Arial, 20px
                     </button>
-                    <button onClick={() => changeFont('bold 26px serif')}>
+                    <button onClick={() => { changeFont('bold 26px serif') } }>
                       Bold, Serif, 26px
                     </button>
-                    <button onClick={() => changeFont('italic bold 30px Montserrat')}>
+                    <button onClick={() => { changeFont('italic bold 30px Montserrat') } }>
                       Italic, Montserrat, 30px
                     </button>
-                    <button onClick={() => changeFont('900 34px hack')}>
+                    <button onClick={() => { changeFont('900 34px hack') } }>
                       Weight 900, Hack, 34px
                     </button>
                   </div>
