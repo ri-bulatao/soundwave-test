@@ -26,6 +26,10 @@ export const Customizer: React.FC = () => {
   const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
   const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
   const [showConfirmation, setShowConfirmation] = useState(false)
+  const [titleFont, setTitleFont] = useState('Cormorant')
+  const [titleFontSize, setTitleFontSize] = useState(50)
+  const [subtitleFont, setSubtitleFont] = useState('Cormorant')
+  const [subtitleFontSize, setSubtitleFontSize] = useState(20)
 
   // Redux state controls
   const { controls } = useSelector((state: RootState) => state.controls)
@@ -87,7 +91,7 @@ export const Customizer: React.FC = () => {
 
   const handleCloseEditLayoutBackground: MouseEventHandler<HTMLDivElement> = (event) => {
     const target = event.target as HTMLDivElement
-    console.log(target)
+    // console.log(target)
     const classList = [...target.classList]
     const filteredClassList = classList.filter((element: string) => {
       const canvasClass = ['overlay', 'frame-color-selection-img', 'frame-color-selection-input', 'd-d-content']
@@ -121,7 +125,7 @@ export const Customizer: React.FC = () => {
     () => {
       setCanvasTitle('Enter your title')
       setCanvasSubtitle('Enter your subtitle here')
-      console.log(canvasTitle)
+      // console.log(canvasTitle)
     },
     [audioFile, showConfirmation]
   )
@@ -251,6 +255,82 @@ export const Customizer: React.FC = () => {
                     </ul>
                   </Accordion.Body>
                 </Accordion.Item>
+                {/* Title and Subtitle Text Properties Accordion */}
+
+                <Accordion.Item eventKey='3'>
+                  <Accordion.Header>
+                  <div className='upload-header'>
+                      <div>
+                      <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                        width="18.000000pt" height="22.000000pt" viewBox="0 0 30.000000 30.000000"
+                        preserveAspectRatio="xMidYMid meet">
+                        <metadata>
+                        Created by potrace 1.16, written by Peter Selinger 2001-2019
+                        </metadata>
+                        <g transform="translate(0.000000,30.000000) scale(0.100000,-0.100000)"
+                        fill="#000000" stroke="none">
+                        <path d="M50 235 c0 -16 6 -25 15 -25 8 0 15 5 15 10 0 6 11 10 25 10 25 0 25
+                        -1 25 -80 0 -47 -4 -80 -10 -80 -5 0 -10 -7 -10 -15 0 -11 11 -15 40 -15 29 0
+                        40 4 40 15 0 8 -4 15 -10 15 -6 0 -10 33 -10 80 0 79 0 80 25 80 14 0 25 -4
+                        25 -10 0 -5 7 -10 15 -10 9 0 15 9 15 25 l0 25 -100 0 -100 0 0 -25z" stroke="#767676"/>
+                        </g>
+                      </svg>
+                        Title and Subtitle Text Properties
+                      </div>
+                      <p className='upload-desc'>Edit the font size and font style of your canvas title and subtitle here:</p>
+                    </div>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <div className="title-and-subtitle-container">
+                      <div>
+                        <p>Title Font: </p>
+                        <select name="title-font" id="title-font" value={titleFont} onChange={(e) => {
+                          setTitleFont(e.target.value)
+                        }}>
+                          <option value="Cormorant">Cormorant</option>
+                          <option value="Arial">Arial</option>
+                          <option value="Inter">Inter</option>
+                          <option value="SF Pro">SF Pro</option>
+                          <option value="Times New Roman">Times New Roman</option>
+                        </select>
+                      </div>
+                      <div>
+                        <p>Title Font Size: </p>
+                        <input
+                          type='number'
+                          placeholder='Example: 50'
+                          value={titleFontSize}
+                          onChange={(e) => {
+                            setTitleFontSize(Number(e.target.value))
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <p>Subtitle Font: </p>
+                        <select name="subtitle-font" id="subtitle-font" value={subtitleFont} onChange={(e) => {
+                          setSubtitleFont(e.target.value)
+                        }}>
+                          <option value="Cormorant">Cormorant</option>
+                          <option value="Arial">Arial</option>
+                          <option value="Inter">Inter</option>
+                          <option value="SF Pro">SF Pro</option>
+                          <option value="Times New Roman">Times New Roman</option>
+                        </select>
+                      </div>
+                      <div>
+                        <p>Subtitle Font Size: </p>
+                        <input
+                          type='number'
+                          placeholder='Example: 20'
+                          value={subtitleFontSize}
+                          onChange={(e) => {
+                            setSubtitleFontSize(Number(e.target.value))
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </Accordion.Body>
+                </Accordion.Item>
                 {(!controls.showTemplates) &&
                   <div className='input-btns col-12'>
                     <button className='btn-transparent col-6'>
@@ -286,11 +366,10 @@ export const Customizer: React.FC = () => {
               </div>
               <div className={'canvas-content'} style={{ background: `url('${customizer.backgroundImage}'` }}>
                 <div className={`overlay ${selected.color.view} ${selected.color.key}`}></div>
-                <div className="canvas-text title">
+                <div className="canvas-text title" style={{ fontFamily: titleFont, fontSize: `${titleFontSize}px` }}>
                   <input type="text" value={canvasTitle} onChange={handleCanvasTitleChange} />
                 </div>
-                <div className="canvas-text subtitle">
-                  {/* <h1>Enter subtitle here</h1> */}
+                <div className="canvas-text subtitle" style={{ fontFamily: subtitleFont, fontSize: `${subtitleFontSize}px` }}>
                   <input type="text" value={canvasSubtitle} onChange={handleCanvasSubTitleChange} />
                 </div>
                 <div className="canvas-soundwave">

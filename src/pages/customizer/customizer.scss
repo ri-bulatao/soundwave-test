@@ -317,7 +317,6 @@ button.accordion-button {
 }
 
 .canvas-text.title {
-    font-size: 50px;
     text-transform: uppercase;
 }
 
@@ -339,7 +338,6 @@ button.accordion-button {
 }
 
 .canvas-text.subtitle input[type="text"] {
-    font-size: 2rem;
     display: inline-block;
 }
 
@@ -554,4 +552,10 @@ button.accordion-button .upload-header .upload-desc {
   .canvas-text.title h1 {
       font-size: 30px;
   }
+}
+
+.title-and-subtitle-container > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 }
