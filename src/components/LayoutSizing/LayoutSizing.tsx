@@ -28,7 +28,7 @@ const LayoutSizing: React.FC = () => {
   return (
     <div className="row">
           {sizes.map((option: any) => (
-      <div className="column">
+      <div className="column" key={option.value}>
           <label className={`card frame-selection ${size.title === option.title ? 'active' : ''}`} key={option.title}>
             <div className="col justify-content-end d-flex">
               <span className='custom-select'></span>
@@ -40,13 +40,13 @@ const LayoutSizing: React.FC = () => {
                 onChange={() => { dispatch(setSize(option)) }}
             />
             </div>
-          
+
             <p>{option.title}</p>
             <span>{option.size_inc}</span>
             <span>{option.size_cm}</span>
           </label>
       </div>
-        ))}
+          ))}
     </div>
   )
 }

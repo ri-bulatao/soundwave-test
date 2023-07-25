@@ -28,7 +28,7 @@ const FrameOptions: React.FC = () => {
   return (
     <div className="row row-cols-1 row-cols-md-1 g-2 mb-4 p-2">
         {listing.frames.map((option: any) => (
-    <div className="col">
+    <div className="col" key={option.value}>
       <div className="card h-100">
           <label className={`frame-selection frame rounded ${selected.frame.value === option.value ? 'active' : ''}`} key={option.value}>
             <span className='custom-select'></span>
@@ -38,7 +38,7 @@ const FrameOptions: React.FC = () => {
                 checked={selected.frame.value === option.value}
                 onChange={() => { dispatch(setFrame(option)) }}
             />
-            <div className="row" style={{marginLeft: "-px"}}>
+            <div className="row" style={{ marginLeft: '-10px' }}>
               <div className="col-auto">
                 <img src={option.image} className="img-fluid rounded-start" alt={option.image}/>
               </div>
@@ -50,7 +50,7 @@ const FrameOptions: React.FC = () => {
       </div>
     </div>
         ))}
-        
+
   </div>
   )
 }
