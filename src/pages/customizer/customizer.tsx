@@ -149,6 +149,8 @@ export const Customizer: React.FC = () => {
         textElement.style.fontFamily = 'Century Gothic'
       } else if (selectedFontTitle === 'Segoe UI') {
         textElement.style.fontFamily = 'Segoe UI'
+      } else if (selectedFontTitle === 'Brush Script') {
+        textElement.style.fontFamily = 'Brush Script MT, cursive'
       }
     }
   }
@@ -173,10 +175,16 @@ export const Customizer: React.FC = () => {
         textElement.style.fontFamily = 'Georgia'
       } else if (selectedFontSubTitle === 'Tahoma') {
         textElement.style.fontFamily = 'Tahoma'
-      } else if (selectedFontTitle === 'Century Gothic') {
+      } else if (selectedFontSubTitle === 'Century Gothic') {
         textElement.style.fontFamily = 'Century Gothic'
-      } else if (selectedFontTitle === 'Segoe UI') {
-        textElement.style.fontFamily = 'Segoe UI'
+      } else if (selectedFontSubTitle === 'Brush Script') {
+        textElement.style.fontFamily = 'Brush Script MT, cursive'
+      } else if (selectedFontSubTitle === 'Courier') {
+        textElement.style.fontFamily = 'Courier New, monospace'
+      } else {
+        textElement.style.font = ''
+        textElement.style.color = ''
+        textElement.style.fontFamily = ''
       }
     }
   }
@@ -360,6 +368,7 @@ export const Customizer: React.FC = () => {
                     <option value="Tahoma">Tahoma</option>
                     <option value="Century Gothic">Century Gothic</option>
                     <option value="Segoe UI">Segoe UI</option>
+                    <option value="Brush Script">Brush Script</option>
                   </select>
                   <input type='button' className='btn btn-success' onClick={handleFontChangeTitle} value="Change Font Style" />
                   <button className='btn btn-light' onClick={() => { setShow(false) }}>Close</button>
@@ -382,7 +391,8 @@ export const Customizer: React.FC = () => {
                     <option value="Georgia">Georgia</option>
                     <option value="Tahoma">Tahoma</option>
                     <option value="Century Gothic">Century Gothic</option>
-                    <option value="Segoe UI">Segoe UI</option>
+                    <option value="Brush Script">Brush Script</option>
+                    <option value="Courier">Courier</option>
                   </select>
                   <input type="button" className='btn btn-success' onClick={handleFontChangeSubTitle} value="Change Font Style" />
                   <button className='btn btn-light' onClick={() => { setShowSubTitle(false) }}>Close</button>
