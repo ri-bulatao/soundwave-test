@@ -32,12 +32,14 @@ export interface Size {
   inch: string
   cm: string
   title: string
+  cost: number
 }
 
 export interface Frame {
   title: string
   value: string
   image: string
+  cost: number
 }
 
 export interface Color {

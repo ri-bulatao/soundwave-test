@@ -2,16 +2,19 @@
   {
     "value": "frame",
     "image": "src/assets/img/frame.png",
-    "title": "Frame"
+    "title": "Frame",
+    "cost": 10.00
   },
   {
     "value": "canvas",
     "image": "src/assets/img/canvas.png",
-    "title": "Canvas"
+    "title": "Canvas",
+    "cost": 15.00
   },
   {
     "value": "raw-art-work",
     "image": "src/assets/img/raw-art-work.png",
-    "title": "Raw at work"
+    "title": "Raw at work",
+    "cost": 20.00
   }
 ]

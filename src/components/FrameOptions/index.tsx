@@ -37,7 +37,7 @@ const FrameOptions: React.FC = () => {
                 onChange={() => { dispatch(setFrame(option)) }}
             />
             <img src={option.image} alt={option.title} />
-            <span>{option.title}</span>
+            <span>{option.title} (€{option.cost})</span>
             </label>
         ))}
     </div>

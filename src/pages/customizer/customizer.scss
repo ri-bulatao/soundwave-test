@@ -235,6 +235,11 @@ button.accordion-button {
   font-size: 16px;
   line-height: 17px;
 }
+.title-and-subtitle-container > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
 
 /* Canvas Pane CSS */
 .canvas-container {
@@ -306,31 +311,43 @@ button.accordion-button {
     color: #FFFFFF;
     padding: 10px 40px;
 }
-.canvas-text.title {
-    font-family: 'Cormorant';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 50px;
-    line-height: 61px;
-    text-transform: uppercase;
-    color: #FFFFFF;
-}
-.canvas-text.title h1 {
-    font-family: 'Cormorant';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 50px;
-    line-height: 61px;
 
+.canvas-text.title,
+.canvas-text.subtitle {
+    font-family: 'Cormorant';
+    font-style: normal;
+    font-weight: 500;
+    line-height: 61px;
+    color: #FFFFFF;
+    max-width: 80%
 }
+
+.canvas-text.title {
+    text-transform: uppercase;
+}
+
+.canvas-text.title input[type="text"],
+.canvas-text.subtitle input[type="text"] {
+    color: white;
+    background: transparent;
+    text-align: center;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
 .canvas-text.subtitle {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: flex-start;
     padding: 8px 16px;
     gap: 10px;
 }
+
+.canvas-text.subtitle input[type="text"] {
+    display: inline-block;
+}
+
 .canvas-content .overlay {
   position: absolute;
   height: 100%;
@@ -494,6 +511,8 @@ button.accordion-button .upload-header .upload-desc {
   .col-7.canvas-container {
       flex: 0 0 auto;
       width: 100% !important;
+      margin-left: 0;
+      margin-bottom: 12px;
   }
   .input-container {
       width: 100%;
@@ -541,5 +560,23 @@ button.accordion-button .upload-header .upload-desc {
   }
   .canvas-text.title h1 {
       font-size: 30px;
+  }
+}
+
+@media (max-width: 340px) {
+  .title-and-subtitle-container > div {
+    display: block;
+  }
+  .input-btns {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .input-btns .col-6 {
+    width: 100%;
+  }
+  .drag-and-drop-input p {
+    text-align: center;
   }
 }
