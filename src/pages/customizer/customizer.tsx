@@ -241,7 +241,7 @@ export const Customizer: React.FC = () => {
                   <Accordion.Body>
                     <ul className="order-preview-container">
                       <li className="order-item">
-                        ORIENTATION<strong>{'Landscapre'}</strong>
+                        ORIENTATION<strong>{orientation}</strong>
                       </li>
                       <li className="order-item">
                         FRAME TYPE<strong>{selected.frame.title}</strong>
