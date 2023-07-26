@@ -262,7 +262,7 @@ export const Customizer: React.FC = () => {
                   <div className='upload-header'>
                       <div>
                       <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                        width="18.000000pt" height="22.000000pt" viewBox="0 0 30.000000 30.000000"
+                        width="26.000000pt" height="22.000000pt" viewBox="0 0 30.000000 30.000000"
                         preserveAspectRatio="xMidYMid meet">
                         <metadata>
                         Created by potrace 1.16, written by Peter Selinger 2001-2019
