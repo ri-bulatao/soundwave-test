@@ -567,4 +567,16 @@ button.accordion-button .upload-header .upload-desc {
   .title-and-subtitle-container > div {
     display: block;
   }
+  .input-btns {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .input-btns .col-6 {
+    width: 100%;
+  }
+  .drag-and-drop-input p {
+    text-align: center;
+  }
 }
