@@ -11,12 +11,14 @@ const initialState: SelectedState = {
     frame: {
       value: 'frame',
       image: 'src/assets/img/frame.png',
-      title: 'Frame'
+      title: 'Frame',
+      cost: 10.00
     },
     size: {
       inch: '8x10 inch',
       cm: '20.32 x 25.4 cm',
-      title: 'Small'
+      title: 'Small',
+      cost: 0.25
     },
     color: {
       id: 1,

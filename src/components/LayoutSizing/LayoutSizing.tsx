@@ -39,6 +39,7 @@ const LayoutSizing: React.FC = () => {
             <p>{option.title}</p>
             <span>{option.size_inc}</span>
             <span>{option.size_cm}</span>
+            <span>€{option.cost}</span>
           </label>
         ))}
     </div>
