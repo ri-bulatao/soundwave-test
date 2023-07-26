@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, useRef } from 'react'
 import type { MouseEventHandler } from 'react'
 import { Accordion } from 'react-bootstrap'
 import DragAndDropImageInput from '../../components/DragAndDropImageInput/DragAndDropImageInput'
@@ -26,6 +26,13 @@ export const Customizer: React.FC = () => {
   const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
   const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
   const [showConfirmation, setShowConfirmation] = useState(false)
+
+  const [selectedFontTitle, setSelectedFontTitle] = useState<string>('Normal')
+  const textElementRefTitle = useRef<HTMLInputElement>(null)
+  const [selectedFontSubTitle, setSelectedFontSubTitle] = useState<string>('Normal')
+  const textElementRefSubTitle = useRef<HTMLInputElement>(null)
+  const [show, setShow] = useState(false)
+  const [showSubTitle, setShowSubTitle] = useState(false)
 
   // Redux state controls
   const { controls } = useSelector((state: RootState) => state.controls)
@@ -112,14 +119,80 @@ export const Customizer: React.FC = () => {
   useEffect(
     () => {
       setCanvasTitle('Enter your title')
-      setCanvasSubtitle('Enter your subtitle here')
+      setCanvasSubtitle('Enter your subtitle')
       console.log(canvasTitle)
     },
     [audioFile, showConfirmation]
   )
+  const handleFontChangeTitle = (): void => {
+    if (textElementRefTitle.current != null) {
+      const textElement = textElementRefTitle.current
+      if (selectedFontTitle === 'Italic') {
+        textElement.style.fontStyle = 'italic'
+        console.log(textElement.value)
+      } else if (selectedFontTitle === 'Normal') {
+        textElement.style.font = '30px arial,serif'
+        textElement.style.color = ''
+      } else if (selectedFontTitle === 'Bold') {
+        textElement.style.fontWeight = 'bold'
+      } else if (selectedFontTitle === '50px') {
+        textElement.style.fontSize = '50px'
+      } else if (selectedFontTitle === 'red') {
+        textElement.style.color = 'red'
+      } else if (selectedFontTitle === 'green') {
+        textElement.style.color = 'green'
+      } else if (selectedFontTitle === 'Georgia') {
+        textElement.style.fontFamily = 'Georgia'
+      } else if (selectedFontTitle === 'Tahoma') {
+        textElement.style.fontFamily = 'Tahoma'
+      } else if (selectedFontTitle === 'Century Gothic') {
+        textElement.style.fontFamily = 'Century Gothic'
+      } else if (selectedFontTitle === 'Segoe UI') {
+        textElement.style.fontFamily = 'Segoe UI'
+      } else if (selectedFontTitle === 'Brush Script') {
+        textElement.style.fontFamily = 'Brush Script MT, cursive'
+      }
+    }
+  }
+  const handleFontChangeSubTitle = (): void => {
+    if (textElementRefSubTitle.current != null) {
+      const textElement = textElementRefSubTitle.current
+      if (selectedFontSubTitle === 'Italic') {
+        textElement.style.fontStyle = 'italic'
+        console.log(textElement.value)
+      } else if (selectedFontSubTitle === 'Normal') {
+        textElement.style.font = '30px arial,serif'
+        textElement.style.color = ''
+      } else if (selectedFontSubTitle === 'Bold') {
+        textElement.style.fontWeight = 'bold'
+      } else if (selectedFontSubTitle === '50px') {
+        textElement.style.fontSize = '50px'
+      } else if (selectedFontSubTitle === 'red') {
+        textElement.style.color = 'red'
+      } else if (selectedFontSubTitle === 'green') {
+        textElement.style.color = 'green'
+      } else if (selectedFontSubTitle === 'Georgia') {
+        textElement.style.fontFamily = 'Georgia'
+      } else if (selectedFontSubTitle === 'Tahoma') {
+        textElement.style.fontFamily = 'Tahoma'
+      } else if (selectedFontSubTitle === 'Century Gothic') {
+        textElement.style.fontFamily = 'Century Gothic'
+      } else if (selectedFontSubTitle === 'Brush Script') {
+        textElement.style.fontFamily = 'Brush Script MT, cursive'
+      } else if (selectedFontSubTitle === 'Courier') {
+        textElement.style.fontFamily = 'Courier New, monospace'
+      } else {
+        textElement.style.font = ''
+        textElement.style.color = ''
+        textElement.style.fontFamily = ''
+      }
+    }
+  }
+
   return (
     <>
       <div className='template-container'>
+
         <div className="template-action-container">
           <button onClick={() => dispatch(toggleShowTemplates(true))} className="add-template-button">Template gallery</button>
           <button onClick={() => dispatch(toggleShowTemplates(false))} className="close-template-button"><img src="/src/assets/icons/close.png" alt="" className="icon" /></button>
@@ -229,7 +302,7 @@ export const Customizer: React.FC = () => {
                   <Accordion.Body>
                     <ul className="order-preview-container">
                       <li className="order-item">
-                        ORIENTATION<strong>{'Landscapre'}</strong>
+                        ORIENTATION<strong>{orientation}</strong>
                       </li>
                       <li className="order-item">
                         FRAME TYPE<strong>{selected.frame.title}</strong>
@@ -280,10 +353,51 @@ export const Customizer: React.FC = () => {
                 <div className={`overlay ${selected.color.view} ${selected.color.key}`}></div>
                 <div className="canvas-text title">
                   {/* <h1>{canvasTitle}</h1> */}
+                  <input onClick={() => { setShow(true) }} id="TextInput" className="form-control border-none text-center" placeholder={canvasTitle} type="text" ref={textElementRefTitle}/>
                 </div>
+                {show
+                  ? <div>
+                  <select id="font" className="form-select mb-2" value={selectedFontTitle} onChange={(e) => { setSelectedFontTitle(e.target.value) }}>
+                    <option value="Normal">Normal</option>
+                    <option value="Bold">Bold</option>
+                    <option value="Italic">Italic</option>
+                    <option value="50px">50px</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Tahoma">Tahoma</option>
+                    <option value="Century Gothic">Century Gothic</option>
+                    <option value="Segoe UI">Segoe UI</option>
+                    <option value="Brush Script">Brush Script</option>
+                  </select>
+                  <input type='button' className='btn btn-success' onClick={handleFontChangeTitle} value="Change Font Style" />
+                  <button className='btn btn-light' onClick={() => { setShow(false) }}>Close</button>
+                </div>
+                  : null}
+
                 <div className="canvas-text subtitle">
-                  <h1>{canvasSubtitle}</h1>
+                  {/* <h1>{canvasSubtitle}</h1> */}
+                  <input onClick={() => { setShowSubTitle(true) }} id="TextInput" className="form-control border-none text-center" placeholder={canvasSubtitle} type="text" ref={textElementRefSubTitle}/>
                 </div>
+                {showSubTitle
+                  ? <div>
+                  <select id="font" className="form-select mb-2" value={selectedFontSubTitle} onChange={(e) => { setSelectedFontSubTitle(e.target.value) }}>
+                    <option value="Normal">Normal</option>
+                    <option value="Bold">Bold</option>
+                    <option value="Italic">Italic</option>
+                    <option value="50px">50px</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Tahoma">Tahoma</option>
+                    <option value="Century Gothic">Century Gothic</option>
+                    <option value="Brush Script">Brush Script</option>
+                    <option value="Courier">Courier</option>
+                  </select>
+                  <input type="button" className='btn btn-success' onClick={handleFontChangeSubTitle} value="Change Font Style" />
+                  <button className='btn btn-light' onClick={() => { setShowSubTitle(false) }}>Close</button>
+                </div>
+                  : null}
                 <div className="canvas-soundwave">
                   {(audioBuffer !== null)
                     ? <WaveCanvas id='canvas-canvas' waveHeight={initialState.waveHeight} audioBuffer={audioBuffer} width={initialState.canvasWidth} height={initialState.canvasHeight} />

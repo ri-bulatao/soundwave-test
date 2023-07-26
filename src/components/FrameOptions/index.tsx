@@ -26,9 +26,11 @@ const FrameOptions: React.FC = () => {
   }, [])
 
   return (
-    <div className='frame-type'>
+    <div className="row row-cols-1 row-cols-md-1 g-2 mb-4 p-2">
         {listing.frames.map((option: any) => (
-            <label className={`col-4 frame-selection frame ${selected.frame.value === option.value ? 'active' : ''}`} key={option.value}>
+    <div className="col" key={option.value}>
+      <div className="card h-100">
+          <label className={`frame-selection frame rounded ${selected.frame.value === option.value ? 'active' : ''}`} key={option.value}>
             <span className='custom-select'></span>
             <input
                 type="radio"
@@ -36,11 +38,20 @@ const FrameOptions: React.FC = () => {
                 checked={selected.frame.value === option.value}
                 onChange={() => { dispatch(setFrame(option)) }}
             />
-            <img src={option.image} alt={option.title} />
-            <span>{option.title}</span>
-            </label>
-        ))}
+            <div className="row" style={{ marginLeft: '-10px' }}>
+              <div className="col-auto">
+                <img src={option.image} className="img-fluid rounded-start" alt={option.image}/>
+              </div>
+            <div className="col-auto">
+              {option.title}
+            </div>
+            </div>
+          </label>
+      </div>
     </div>
+        ))}
+
+  </div>
   )
 }
 

@@ -26,21 +26,27 @@ const LayoutSizing: React.FC = () => {
   }, [])
 
   return (
-    <div className='sizing-container'>
-        {sizes.map((option: any) => (
-          <label className={`col-6 frame-selection ${size.title === option.title ? 'active' : ''}`} key={option.title}>
-            <span className='custom-select'></span>
-            <input
+    <div className="row">
+          {sizes.map((option: any) => (
+      <div className="column" key={option.value}>
+          <label className={`card frame-selection ${size.title === option.title ? 'active' : ''}`} key={option.title}>
+            <div className="col justify-content-end d-flex">
+              <span className='custom-select'></span>
+              <input
                 type="radio"
+                className='radioBtn'
                 value={option.title}
                 checked={size.title === option.title}
                 onChange={() => { dispatch(setSize(option)) }}
             />
+            </div>
+
             <p>{option.title}</p>
             <span>{option.size_inc}</span>
             <span>{option.size_cm}</span>
           </label>
-        ))}
+      </div>
+          ))}
     </div>
   )
 }
