@@ -24,7 +24,7 @@ export const Customizer: React.FC = () => {
   const [showImageSizeAlert, setShowImageSizeAlert] = useState<boolean>(false)
   const [audioFileName, setAudioFileName] = useState<string>('No Files Selected')
   const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
-  const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
+  const [, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
   const [showConfirmation, setShowConfirmation] = useState(false)
 
   // Redux state controls
@@ -117,10 +117,15 @@ export const Customizer: React.FC = () => {
     [audioFile, showConfirmation]
   )
   const [fontStyle, setFontStyle] = useState<string>('')
+  const [fontStyle2, setFontStyle2] = useState<string>('')
 
   const changeFont = (font: string): void => {
     setFontStyle(font)
     console.log(fontStyle)
+  }
+  const changeFont2 = (font: string): void => {
+    setFontStyle2(font)
+    console.log(fontStyle2)
   }
   return (
     <>
@@ -163,7 +168,47 @@ export const Customizer: React.FC = () => {
                   </Accordion.Item>
                 </Accordion>)
               : (<Accordion defaultActiveKey={['0']} className='main-accordion-layout'>
+<div>
+                    {/* <p id='text' style={ { font: `${fontStyle}` } }>
+                    </p> */}
+                    <p className='text-dark mt-3'>Title Font Customizer</p>
+                    <button className='btn btn-light' onClick={() => { changeFont('italic 20px arial') } }>
+                      Italic, Arial, 20px
+                    </button>
+                    <button className='btn btn-light' onClick={() => { changeFont('bold 26px serif') } }>
+                      Bold, Serif, 26px
+                    </button>
+                    <button className='btn btn-light' onClick={() => { changeFont('italic bold 30px Montserrat') } }>
+                      Italic, Montserrat, 30px
+                    </button>
+                    <button className='btn btn-light' onClick={() => { changeFont('900 34px hack') } }>
+                      Hack, 34px
+                    </button>
+                    <button className='btn btn-light' onClick={() => { changeFont('900 34px Calibri') } }>
+                      Calibri, 34px
+                    </button>
+                  </div>
 
+                  <div>
+                    {/* <p id='text' style={ { font: `${fontStyle}` } }>
+                    </p> */}
+                    <p className='text-dark mt-3'>Subtitle Font Customizer</p>
+                    <button className='btn btn-light' onClick={() => { changeFont2('italic 20px arial') } }>
+                      Italic, Arial, 20px
+                    </button>
+                    <button className='btn btn-light' onClick={() => { changeFont2('bold 26px serif') } }>
+                      Bold, Serif, 26px
+                    </button>
+                    <button className='btn btn-light' onClick={() => { changeFont2('italic bold 30px Montserrat') } }>
+                      Italic, Montserrat, 30px
+                    </button>
+                    <button className='btn btn-light' onClick={() => { changeFont2('900 34px hack') } }>
+                      Hack, 34px
+                    </button>
+                    <button className='btn btn-light' onClick={() => { changeFont2('900 34px Calibri') } }>
+                      Calibri, 34px
+                    </button>
+                  </div>
                 <Accordion.Item eventKey='0'>
                   <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}>
                     <div className='upload-header'>
@@ -253,7 +298,7 @@ export const Customizer: React.FC = () => {
                     <button className='btn-transparent col-6'>
                       Preview
                     </button>
-                    <button className='btn btn-primary col-6'>
+                    <button className='btn btn-light col-6'>
                       Continue
                     </button>
                   </div>
@@ -281,29 +326,15 @@ export const Customizer: React.FC = () => {
                   <img className={`orientation-icon ${orientation + '-orientation'}`} src='src/assets/icons/svg/orientation-icon.svg' alt='' />
                 </button>
               </div>
-              <div>
-                    <p id='text' style={ { font: `${fontStyle}` } }>
-                    </p>
-                    <button onClick={() => { changeFont('italic 20px arial') } }>
-                      Italic, Arial, 20px
-                    </button>
-                    <button onClick={() => { changeFont('bold 26px serif') } }>
-                      Bold, Serif, 26px
-                    </button>
-                    <button onClick={() => { changeFont('italic bold 30px Montserrat') } }>
-                      Italic, Montserrat, 30px
-                    </button>
-                    <button onClick={() => { changeFont('900 34px hack') } }>
-                      Weight 900, Hack, 34px
-                    </button>
-                  </div>
               <div className={'canvas-content'} style={{ background: `url('${customizer.backgroundImage}'` }}>
                 <div className={`overlay ${selected.color.view} ${selected.color.key}`}></div>
                 <div className="canvas-text title">
-                  <h1>{canvasTitle}</h1>
+                  {/* <h1>{canvasTitle}</h1> */}
+                  <input type="text" className='form-control border-none text-center' placeholder={canvasTitle} style={ { font: `${fontStyle}` } }/>
                 </div>
                 <div className="canvas-text subtitle">
-                  <h1>{canvasSubtitle}</h1>
+                  {/* <h1>{canvasSubtitle}</h1> */}
+                  <input type="text" className='form-control border-none text-center' placeholder={canvasTitle} style={ { font: `${fontStyle2}` } }/>
                 </div>
                 <div className="canvas-soundwave">
                   {(audioBuffer !== null)
