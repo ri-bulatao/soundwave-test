@@ -30,6 +30,7 @@ export const Customizer: React.FC = () => {
   const [titleFontSize, setTitleFontSize] = useState(50)
   const [subtitleFont, setSubtitleFont] = useState('Cormorant')
   const [subtitleFontSize, setSubtitleFontSize] = useState(20)
+  const [totalPrice, setTotalPrice] = useState<number>(0)
 
   // Redux state controls
   const { controls } = useSelector((state: RootState) => state.controls)
@@ -38,6 +39,12 @@ export const Customizer: React.FC = () => {
   const { orientation } = useSelector((state: RootState) => state.canvas)
   const dispatch = useDispatch()
 
+  const calculateTotalPrice = (): number => {
+    const orientationPrice = orientation === 'Portrait' ? 3.0 : 5.0
+    const frameTypePrice = selected.frame.cost
+    const sizePrice = selected.size.cost
+    return orientationPrice + frameTypePrice + sizePrice
+  }
   const handleAudioChange = (file: File): void => {
     if (typeof file !== 'undefined' || file !== null) {
       const fileSizeInMB = file.size / (1024 * 1024)
@@ -120,6 +127,11 @@ export const Customizer: React.FC = () => {
   const handleCanvasSubTitleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setCanvasSubtitle(event.target.value)
   }
+
+  useEffect(() => {
+    const totalPrice = calculateTotalPrice()
+    setTotalPrice(totalPrice)
+  }, [selected])
 
   useEffect(
     () => {
@@ -325,7 +337,7 @@ export const Customizer: React.FC = () => {
                         SIZE<strong>{selected.size.title}</strong>
                       </li>
                       <li className="order-item">
-                        TOTAL PRICE<strong>{'€50.00'}</strong>
+                        TOTAL PRICE<strong>{`€${totalPrice.toFixed(2)}`}</strong>
                       </li>
                     </ul>
                   </Accordion.Body>
