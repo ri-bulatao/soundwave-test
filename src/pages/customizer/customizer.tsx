@@ -144,26 +144,19 @@ export const Customizer: React.FC = () => {
     if (statusText === "Title") {
       setShowTitleSettings(true);
       console.log("Clicked Title");
-    } else if (statusText === "SubTitle") {
-      setShowSubTitleSettings(true);
-      console.log("Clicked SubTitle");
-    }
-  };
 
-  const handleFontSizeChangeTitle = (): void => {
-    if (textRefTitle.current != null) {
+      if (textRefTitle.current === null) return;
+
       const textElement = textRefTitle.current;
+
+      // Title Font Size Settings
       if (selectedFontSize === "10px") textElement.style.fontSize = "10px";
       else if (selectedFontSize === "20px") textElement.style.fontSize = "20px";
       else if (selectedFontSize === "30px") textElement.style.fontSize = "30px";
       else if (selectedFontSize === "40px") textElement.style.fontSize = "40px";
       else if (selectedFontSize === "50px") textElement.style.fontSize = "50px";
-    }
-  };
 
-  const handleFontStyleChangeTitle = (): void => {
-    if (textRefTitle.current != null) {
-      const textElement = textRefTitle.current;
+      // Title Font Style Settings
       if (selectedFontStyle === "Georgia")
         textElement.style.fontFamily = "Georgia";
       else if (selectedFontStyle === "Tahoma")
@@ -174,20 +167,94 @@ export const Customizer: React.FC = () => {
         textElement.style.fontFamily = "Segoe UI";
       else if (selectedFontStyle === "Brush Script")
         textElement.style.fontFamily = "Brush Script MT, cursive";
-    }
-  };
 
-  const handleFontChangeTitle = (): void => {
-    if (textRefTitle.current != null) {
-      const textElement = textRefTitle.current;
+      // Title Font Settings
       if (selectedFontTitle === "Italic")
         textElement.style.fontStyle = "italic";
       else if (selectedFontTitle === "Normal")
         textElement.style.font = "20px arial,serif";
       else if (selectedFontTitle === "Bold")
         textElement.style.fontWeight = "bold";
+    } else if (statusText === "SubTitle") {
+      setShowSubTitleSettings(true);
+      console.log("Clicked SubTitle");
+
+      if (textRefSubtitle.current === null) return;
+
+      const textElement = textRefSubtitle.current;
+
+      // SubTitle Font Size Settings
+      if (selectedFontSizeSubtitle === "10px")
+        textElement.style.fontSize = "10px";
+      else if (selectedFontSizeSubtitle === "20px")
+        textElement.style.fontSize = "20px";
+      else if (selectedFontSizeSubtitle === "30px")
+        textElement.style.fontSize = "30px";
+      else if (selectedFontSizeSubtitle === "40px")
+        textElement.style.fontSize = "40px";
+      else if (selectedFontSizeSubtitle === "50px")
+        textElement.style.fontSize = "50px";
+
+      // Subitle Font Style Settings
+      if (selectedFontStyleSubtitle === "Georgia")
+        textElement.style.fontFamily = "Georgia";
+      else if (selectedFontStyleSubtitle === "Tahoma")
+        textElement.style.fontFamily = "Tahoma";
+      else if (selectedFontStyleSubtitle === "Century Gothic")
+        textElement.style.fontFamily = "Century Gothic";
+      else if (selectedFontStyleSubtitle === "Segoe UI")
+        textElement.style.fontFamily = "Segoe UI";
+      else if (selectedFontStyleSubtitle === "Brush Script")
+        textElement.style.fontFamily = "Brush Script MT, cursive";
+
+      // SubTitle Font Settings
+      if (selectedFontSubtitle === "Italic")
+        textElement.style.fontStyle = "italic";
+      else if (selectedFontSubtitle === "Normal")
+        textElement.style.font = "20px arial,serif";
+      else if (selectedFontSubtitle === "Bold")
+        textElement.style.fontWeight = "bold";
     }
   };
+
+  // const handleFontSizeChangeTitle = (): void => {
+  //   if (textRefTitle.current != null) {
+  //     const textElement = textRefTitle.current;
+  //     if (selectedFontSize === "10px") textElement.style.fontSize = "10px";
+  //     else if (selectedFontSize === "20px") textElement.style.fontSize = "20px";
+  //     else if (selectedFontSize === "30px") textElement.style.fontSize = "30px";
+  //     else if (selectedFontSize === "40px") textElement.style.fontSize = "40px";
+  //     else if (selectedFontSize === "50px") textElement.style.fontSize = "50px";
+  //   }
+  // };
+
+  // const handleFontStyleChangeTitle = (): void => {
+  //   if (textRefTitle.current != null) {
+  //     const textElement = textRefTitle.current;
+  //     if (selectedFontStyle === "Georgia")
+  //       textElement.style.fontFamily = "Georgia";
+  //     else if (selectedFontStyle === "Tahoma")
+  //       textElement.style.fontFamily = "Tahoma";
+  //     else if (selectedFontStyle === "Century Gothic")
+  //       textElement.style.fontFamily = "Century Gothic";
+  //     else if (selectedFontStyle === "Segoe UI")
+  //       textElement.style.fontFamily = "Segoe UI";
+  //     else if (selectedFontStyle === "Brush Script")
+  //       textElement.style.fontFamily = "Brush Script MT, cursive";
+  //   }
+  // };
+
+  // const handleFontChangeTitle = (): void => {
+  //   if (textRefTitle.current != null) {
+  //     const textElement = textRefTitle.current;
+  //     if (selectedFontTitle === "Italic")
+  //       textElement.style.fontStyle = "italic";
+  //     else if (selectedFontTitle === "Normal")
+  //       textElement.style.font = "20px arial,serif";
+  //     else if (selectedFontTitle === "Bold")
+  //       textElement.style.fontWeight = "bold";
+  //   }
+  // };
 
   useEffect(() => {
     setCanvasTitle("Enter your title");
@@ -508,7 +575,6 @@ export const Customizer: React.FC = () => {
                     onClick={() => {
                       setStatusText("Title");
                       handleTitleSubtitleChange();
-                     
                     }}
                     id="TextInput"
                     className="form-control border-none text-center"
@@ -524,9 +590,9 @@ export const Customizer: React.FC = () => {
                     <select
                       id="font"
                       className="form-select mb-2"
-                      value={selectedFontStyleSubtitle}
+                      value={selectedFontStyle}
                       onChange={(e) => {
-                        setselectedFontStyleSubtitle(e.target.value);
+                        setselectedFontStyle(e.target.value);
                       }}
                     >
                       <option value="Georgia">Georgia</option>
@@ -538,9 +604,9 @@ export const Customizer: React.FC = () => {
                     <select
                       id="font"
                       className="form-select mb-2"
-                      value={selectedFontSizeSubtitle}
+                      value={selectedFontSize}
                       onChange={(e) => {
-                        setSelectedFontSizeSubtitle(e.target.value);
+                        setSelectedFontSize(e.target.value);
                       }}
                     >
                       <option value="10px">10px</option>
@@ -553,25 +619,28 @@ export const Customizer: React.FC = () => {
                     <select
                       id="font"
                       className="form-select mb-2"
-                      value={selectedFontSubtitle}
+                      value={selectedFontTitle}
                       onChange={(e) => {
-                        setSelectedFontSubtitle(e.target.value);
+                        setSelectedFontTitle(e.target.value);
                       }}
                     >
                       <option value="Normal">Normal</option>
                       <option value="Bold">Bold</option>
                       <option value="Italic">Italic</option>
                     </select>
-                    <input
+                    <button
                       type="button"
                       className="btn btn-success"
                       onClick={() => {
-                        handleFontChangeTitle();
-                        handleFontSizeChangeTitle();
-                        handleFontStyleChangeTitle();
+                        handleTitleSubtitleChange();
+                        // handleFontChangeTitle();
+                        // handleFontSizeChangeTitle();
+                        // handleFontStyleChangeTitle();
                       }}
                       value="Change Font Style"
-                    />
+                    >
+                      Apply
+                    </button>
                     <button
                       className="btn btn-light"
                       onClick={() => {
@@ -584,12 +653,12 @@ export const Customizer: React.FC = () => {
                   </div>
                 ) : null}
 
+
                 <div className="canvas-text subtitle">
                   <input
                     onClick={() => {
                       setStatusText("SubTitle");
                       handleTitleSubtitleChange();
-                      
                     }}
                     id="TextInput"
                     className="form-control border-none text-center"
@@ -597,7 +666,6 @@ export const Customizer: React.FC = () => {
                     type="text"
                     ref={textRefSubtitle}
                   />
- 
                 </div>
 
                 {/* For Subtitle */}
@@ -644,16 +712,19 @@ export const Customizer: React.FC = () => {
                       <option value="Bold">Bold</option>
                       <option value="Italic">Italic</option>
                     </select>
-                    <input
+                    <button
                       type="button"
                       className="btn btn-success"
                       onClick={() => {
-                        handleFontChangeTitle();
-                        handleFontSizeChangeTitle();
-                        handleFontStyleChangeTitle();
+                        handleTitleSubtitleChange();
+                        // handleFontChangeTitle();
+                        // handleFontSizeChangeTitle();
+                        // handleFontStyleChangeTitle();
                       }}
                       value="Change Font Style"
-                    />
+                    >
+                      Apply
+                    </button>
                     <button
                       className="btn btn-light"
                       onClick={() => {
@@ -665,9 +736,6 @@ export const Customizer: React.FC = () => {
                     </button>
                   </div>
                 ) : null}
-
-
-
 
                 <div className="canvas-soundwave">
                   {audioBuffer !== null ? (
