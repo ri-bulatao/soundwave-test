@@ -49,6 +49,7 @@ export const Customizer: React.FC = () => {
   const [showTitleSettings, setShowTitleSettings] = useState(false);
   const [showSubTitleSettings, setShowSubTitleSettings] = useState(false);
   const [statusText, setStatusText] = useState("");
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
   // Redux state controls
   const { controls } = useSelector((state: RootState) => state.controls);
@@ -217,6 +218,15 @@ export const Customizer: React.FC = () => {
     }
   };
 
+  const calculateTotalPrice = (): number => {
+
+    
+    const orientationPrice = orientation === "Portrait" ? 3.0 : 5.0;
+    const frameTypePrice = selected.frame.cost;
+    const sizePrice = selected.size.cost;
+    return orientationPrice + frameTypePrice + sizePrice;
+  };
+
   // const handleFontSizeChangeTitle = (): void => {
   //   if (textRefTitle.current != null) {
   //     const textElement = textRefTitle.current;
@@ -256,11 +266,20 @@ export const Customizer: React.FC = () => {
   //   }
   // };
 
+  // useEffect(() => {
+  //   const totalPrice = calculateTotalPrice();
+  //   setTotalPrice(totalPrice);
+  // }, [selected]);
+
   useEffect(() => {
+
+    const totalPrice = calculateTotalPrice();
+    setTotalPrice(totalPrice);
+
     setCanvasTitle("Enter your title");
     setCanvasSubtitle("Enter your subtitle here");
     console.log(canvasTitle);
-  }, [audioFile, showConfirmation]);
+  }, [audioFile, showConfirmation,selected]);
   return (
     <>
       <div className="template-container">
@@ -508,7 +527,7 @@ export const Customizer: React.FC = () => {
                     <Accordion.Body>
                       <ul className="order-preview-container">
                         <li className="order-item">
-                          ORIENTATION<strong>{"Landscapre"}</strong>
+                          ORIENTATION<strong>{orientation}</strong>
                         </li>
                         <li className="order-item">
                           FRAME TYPE<strong>{selected.frame.title}</strong>
@@ -517,7 +536,7 @@ export const Customizer: React.FC = () => {
                           SIZE<strong>{selected.size.title}</strong>
                         </li>
                         <li className="order-item">
-                          TOTAL PRICE<strong>{"€50.00"}</strong>
+                          TOTAL PRICE<strong>{`€${totalPrice.toFixed(2)}`}</strong>
                         </li>
                       </ul>
                     </Accordion.Body>
@@ -652,7 +671,6 @@ export const Customizer: React.FC = () => {
                     </button>
                   </div>
                 ) : null}
-
 
                 <div className="canvas-text subtitle">
                   <input
