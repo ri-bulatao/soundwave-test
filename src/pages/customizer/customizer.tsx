@@ -219,67 +219,20 @@ export const Customizer: React.FC = () => {
   };
 
   const calculateTotalPrice = (): number => {
-
-    
     const orientationPrice = orientation === "Portrait" ? 3.0 : 5.0;
     const frameTypePrice = selected.frame.cost;
     const sizePrice = selected.size.cost;
     return orientationPrice + frameTypePrice + sizePrice;
   };
 
-  // const handleFontSizeChangeTitle = (): void => {
-  //   if (textRefTitle.current != null) {
-  //     const textElement = textRefTitle.current;
-  //     if (selectedFontSize === "10px") textElement.style.fontSize = "10px";
-  //     else if (selectedFontSize === "20px") textElement.style.fontSize = "20px";
-  //     else if (selectedFontSize === "30px") textElement.style.fontSize = "30px";
-  //     else if (selectedFontSize === "40px") textElement.style.fontSize = "40px";
-  //     else if (selectedFontSize === "50px") textElement.style.fontSize = "50px";
-  //   }
-  // };
-
-  // const handleFontStyleChangeTitle = (): void => {
-  //   if (textRefTitle.current != null) {
-  //     const textElement = textRefTitle.current;
-  //     if (selectedFontStyle === "Georgia")
-  //       textElement.style.fontFamily = "Georgia";
-  //     else if (selectedFontStyle === "Tahoma")
-  //       textElement.style.fontFamily = "Tahoma";
-  //     else if (selectedFontStyle === "Century Gothic")
-  //       textElement.style.fontFamily = "Century Gothic";
-  //     else if (selectedFontStyle === "Segoe UI")
-  //       textElement.style.fontFamily = "Segoe UI";
-  //     else if (selectedFontStyle === "Brush Script")
-  //       textElement.style.fontFamily = "Brush Script MT, cursive";
-  //   }
-  // };
-
-  // const handleFontChangeTitle = (): void => {
-  //   if (textRefTitle.current != null) {
-  //     const textElement = textRefTitle.current;
-  //     if (selectedFontTitle === "Italic")
-  //       textElement.style.fontStyle = "italic";
-  //     else if (selectedFontTitle === "Normal")
-  //       textElement.style.font = "20px arial,serif";
-  //     else if (selectedFontTitle === "Bold")
-  //       textElement.style.fontWeight = "bold";
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const totalPrice = calculateTotalPrice();
-  //   setTotalPrice(totalPrice);
-  // }, [selected]);
-
   useEffect(() => {
-
     const totalPrice = calculateTotalPrice();
     setTotalPrice(totalPrice);
 
     setCanvasTitle("Enter your title");
     setCanvasSubtitle("Enter your subtitle here");
     console.log(canvasTitle);
-  }, [audioFile, showConfirmation,selected]);
+  }, [audioFile, showConfirmation, selected]);
   return (
     <>
       <div className="template-container">
@@ -536,7 +489,8 @@ export const Customizer: React.FC = () => {
                           SIZE<strong>{selected.size.title}</strong>
                         </li>
                         <li className="order-item">
-                          TOTAL PRICE<strong>{`€${totalPrice.toFixed(2)}`}</strong>
+                          TOTAL PRICE
+                          <strong>{`€${totalPrice.toFixed(2)}`}</strong>
                         </li>
                       </ul>
                     </Accordion.Body>
@@ -647,28 +601,29 @@ export const Customizer: React.FC = () => {
                       <option value="Bold">Bold</option>
                       <option value="Italic">Italic</option>
                     </select>
-                    <button
-                      type="button"
-                      className="btn btn-success"
-                      onClick={() => {
-                        handleTitleSubtitleChange();
-                        // handleFontChangeTitle();
-                        // handleFontSizeChangeTitle();
-                        // handleFontStyleChangeTitle();
-                      }}
-                      value="Change Font Style"
-                    >
-                      Apply
-                    </button>
-                    <button
-                      className="btn btn-light"
-                      onClick={() => {
-                        setShowTitleSettings(false);
-                        setStatusText("");
-                      }}
-                    >
-                      Close
-                    </button>
+
+                    <div className="d-grid gap-2">
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={() => {
+                          handleTitleSubtitleChange();
+                         
+                        }}
+                        value="Change Font Style"
+                      >
+                        Apply
+                      </button>
+                      <button
+                        className="btn btn-light"
+                        onClick={() => {
+                          setShowTitleSettings(false);
+                          setStatusText("");
+                        }}
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
                 ) : null}
 
@@ -730,28 +685,29 @@ export const Customizer: React.FC = () => {
                       <option value="Bold">Bold</option>
                       <option value="Italic">Italic</option>
                     </select>
-                    <button
-                      type="button"
-                      className="btn btn-success"
-                      onClick={() => {
-                        handleTitleSubtitleChange();
-                        // handleFontChangeTitle();
-                        // handleFontSizeChangeTitle();
-                        // handleFontStyleChangeTitle();
-                      }}
-                      value="Change Font Style"
-                    >
-                      Apply
-                    </button>
-                    <button
-                      className="btn btn-light"
-                      onClick={() => {
-                        setShowSubTitleSettings(false);
-                        setStatusText("");
-                      }}
-                    >
-                      Close
-                    </button>
+
+                    <div className="d-grid gap-2">
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={() => {
+                          handleTitleSubtitleChange();
+                          
+                        }}
+                        value="Change Font Style"
+                      >
+                        Apply
+                      </button>
+                      <button
+                        className="btn btn-light"
+                        onClick={() => {
+                          setShowSubTitleSettings(false);
+                          setStatusText("");
+                        }}
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
                 ) : null}
 
